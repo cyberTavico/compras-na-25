@@ -7,7 +7,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "scrape": "tsx src/index.ts"
+    "scrape": "tsx src/index.ts",
+    "scrape:scheduled": "node -e 'setInterval(() => require(\"./dist/index.js\"), 3600000)'"
   },
   "dependencies": {
     "playwright": "latest",
