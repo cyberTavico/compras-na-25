@@ -3,9 +3,20 @@
   "version": "1.0.0",
   "description": "MVP - Agregador de preços de compras",
   "private": true,
+  "scripts": {
+    "dev": "docker-compose up",
+    "dev:local": "concurrently \"cd apps/backend && npm run dev\" \"cd apps/frontend && npm run dev\" \"cd apps/scraper && npm run dev\"",
+    "install:all": "npm install && npm install --workspace=apps/frontend && npm install --workspace=apps/backend && npm install --workspace=apps/scraper",
+    "db:migrate": "cd prisma && npx prisma migrate dev",
+    "db:seed": "cd prisma && npx prisma db seed",
+    "scrape": "cd apps/scraper && npm run scrape"
+  },
   "workspaces": [
     "apps/frontend",
     "apps/backend",
     "apps/scraper"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "latest"
+  }
 }

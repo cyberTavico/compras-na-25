@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { authRoutes } from './routes/auth';
 import { priceAlertRoutes } from './routes/price-alerts';
 import { notificationRoutes, checkPriceAlerts } from './routes/notifications';
+import { favoriteRoutes } from './routes/favorites';
 
 dotenv.config();
 
@@ -52,6 +53,7 @@ app.get('/health', async (request, reply) => {
 app.register(authRoutes);
 app.register(priceAlertRoutes);
 app.register(notificationRoutes);
+app.register(favoriteRoutes);
 
 // Get all products
 app.get('/api/products', async (request, reply) => {
