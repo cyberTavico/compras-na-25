@@ -1,0 +1,23 @@
+{
+  "name": "compras-na-25-scraper",
+  "version": "1.0.0",
+  "description": "Web scraper for Compras na 25",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scrape": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "playwright": "latest",
+    "@prisma/client": "latest",
+    "prisma": "latest",
+    "dotenv": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "@types/node": "latest",
+    "tsx": "latest"
+  }
+}

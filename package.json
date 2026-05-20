@@ -1,0 +1,11 @@
+{
+  "name": "compras-na-25",
+  "version": "1.0.0",
+  "description": "MVP - Agregador de preços de compras",
+  "private": true,
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend",
+    "apps/scraper"
+  ]
+}
