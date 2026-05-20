@@ -16,6 +16,8 @@ model User {
   password  String
   name      String
   favorites Product[]
+  priceAlerts PriceAlert[]
+  notifications Notification[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -35,6 +37,7 @@ model Product {
   description String?
   prices    Price[]
   favoritedBy User[]
+  priceAlerts PriceAlert[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -51,4 +54,39 @@ model Price {
   updatedAt DateTime @updatedAt
 
   @@unique([productId, storeId])
+}
+
+model PriceAlert {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  targetPrice Float
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      NotificationType
+  isRead    Boolean  @default(false)
+  metadata  Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum NotificationType {
+  PRICE_DROP
+  PRICE_ALERT
+  NEW_PRODUCT
+  FLASH_SALE
+  GENERIC
 }
